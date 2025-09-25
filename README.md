@@ -31,7 +31,6 @@ Plotme takes tabular data (e.g. excel) and outputs interactive scatter plots. It
 * extract x value from filename using regular expression `x_id_is_reg_exp`
 
 ## Install options
-* download exe from releases (windows only)
 * install using [pipx](https://pipx.pypa.io/stable/) from source (recommended if you want system wide availability)
   * `pipx install git+https://github.com/3mcloud/plotme.git`
 * install to active python environment from source:
