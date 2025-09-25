@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+
+## [1.3.0] - 2025-09-25
+
+### Added
+- ability to pass any plotly keyword arguments e.g. 'font' and or 'legend' via `update_layout_kwargs`
+
+### Changed
+- useability improvement: space characters are stripped from x_id, y_id and also from the loaded dataframe column headers therefore leading and trailing spaces no longer create errors
+
 ## [1.2.0] - 2025-09-05
 
 ### Added

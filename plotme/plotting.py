@@ -10,6 +10,7 @@ from dirhash import dirhash
 from jsonschema import validate
 from plotly.subplots import make_subplots
 
+from plotme.helper import strip_white_space
 from plotme.load_data import Folder, check_filter_match
 from plotme.schema import schema, template
 
@@ -88,12 +89,15 @@ def single_plot(args_dict={}):
 
     title = args_dict.get('title_text', 'plotme plot')
     x_id = args_dict.get('x_id', 'index')
+    x_id = strip_white_space(x_id)
     x_title = args_dict.get('x_title', x_id)  # use x_id if no label is given
     y_id = args_dict.get('y_id', 'headers')
+    y_id = strip_white_space(y_id)
     y_title = args_dict.get('y_title', y_id)  # use y_id if no label is given
     trace_mode = args_dict.get('trace_mode', 'markers')
     marker_symbols = args_dict.get('marker_symbols')
     show_legend = args_dict.get('showlegend', True)
+    update_layout_kwargs = args_dict.get('update_layout_args', {})
     x_axes_kwargs = args_dict.get('x_axes_kwargs', {})
     y_axes_kwargs = args_dict.get('y_axes_kwargs', {})
     x_axes_visible = args_dict.get('xaxes_visible', True)
@@ -203,6 +207,7 @@ def single_plot(args_dict={}):
 
     fig.update_layout(height=height, width=width, title_text=title)
     fig.update_layout(showlegend=show_legend)
+    fig.update_layout(**update_layout_kwargs)
     fig.update_xaxes(visible=x_axes_visible, **x_axes_kwargs)
     fig.update_yaxes(visible=y_axes_visible, **y_axes_kwargs)
 

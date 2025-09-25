@@ -153,6 +153,9 @@ class Folder(object):
                 file_info = {'file_stem' : file_path.stem,
                              'file_path': str(file_path)}
                 df = read(file, index_col=index_col, header=header)
+
+                # strip only beginning and ending white space from column headers
+                df.columns = df.columns.str.strip()
                 
                 # if x_id or y_id not a columns header, try to fuzzy match it
                 # if matching doesn't work then skip the file

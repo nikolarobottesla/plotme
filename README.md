@@ -17,6 +17,7 @@ Plotme takes tabular data (e.g. excel) and outputs interactive scatter plots. It
     * error bars
     * axes kwargs
   * [pio.templates](https://plotly.com/python/templates/)
+  * pass any plotly keyword arguments e.g. 'font' and or 'legend' `update_layout_kwargs`
 * auto-detect data files (xls, xlsx, csv only)
 * supported data files: xls, xlsx, csv, txt
 * filter data files (include and exclude) `folder_include_filter`, `folder_exclude_filter`, 
@@ -44,6 +45,42 @@ Plotme takes tabular data (e.g. excel) and outputs interactive scatter plots. It
   2. run once to generate a template of the plot_info.json
   3. modify the template as needed
   4. run again to generate plot(s)
+
+
+### example JSON plot_info.json file
+in this example
+* the x value is extracted from the file name via regular expression
+* each point on the scatter plot is the maximum value from a column called `Force(N)-data` where the header is located at the 4th row of a data file
+* the legend is inside the plot in the right top corner, by default the legend is outside the plot on the right side
+```json
+{
+    "title_text": "Force over temperature",
+    "x_id": "_(\\d+)C",
+    "x_title": "Temperature (C)",
+    "y_id": "Force(N)-data",
+    "y_title": "Max Force (N)",
+    "showlegend": true,
+    "update_layout_args": {
+        "legend": {"xanchor": "right", "yanchor": "top"},
+        "font": {"size": 17}
+    },
+    "x_axes_kwargs": {
+        "type": "-"
+    },
+    "y_axes_kwargs": {
+        "type": "log"
+    },
+    "xaxes_visible": true,
+    "yaxes_visible": true,
+    "schema": {
+        "header": 3,
+        "x_id_is_reg_exp": true
+    },
+    "post": "max",
+    "pio.template": "plotly_white",
+    "trace_mode": "markers"
+}
+```
 
 ## Contribute
 

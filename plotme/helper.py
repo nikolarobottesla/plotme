@@ -53,3 +53,29 @@ def start_logging(log_folder='', log_level=logging.INFO, file_name='',
         logging.info('info logging active')
         logging.warning('warning logging active')
         logging.error('error logging active')
+
+
+def strip_white_space(string_or_strings):
+    """
+    Strips leading and trailing white space from a string or any iterable of strings
+
+    Parameters
+    ----------
+    string_or_strings: str or iterable
+        string or iterable of strings to be stripped
+
+    Returns
+    -------
+    str or same type as input
+        stripped string or iterable of stripped strings
+    """
+    if isinstance(string_or_strings, str):
+        return string_or_strings.strip()
+    else:
+        try:
+            # Try to iterate over the input
+            stripped_items = [s.strip() for s in string_or_strings]
+            # Return the same type as input (list, tuple, etc.)
+            return type(string_or_strings)(stripped_items)
+        except TypeError:
+            raise ValueError(f"Unexpected type: {type(string_or_strings)}, expected str or iterable")
