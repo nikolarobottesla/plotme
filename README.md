@@ -11,13 +11,14 @@ Plotme takes tabular data (e.g. excel) and outputs interactive scatter plots. It
 * validation plot_info.json using jsonschema
 * pass-through to plotly
   * scatter plot
-    * mode (markers or lines)
-    * [marker_symbols](https://plotly.com/python/marker-style/)
-    * constant lines
-    * error bars
-    * axes kwargs
+    * `trace_mode` (markers or lines) 
+    * `marker_symbols` [documentation](https://plotly.com/python/marker-style/)
+    * `constant_lines` constant lines
+    * `error_y` error bars
+    * `x_axes_kwargs`, `y_axes_kwargs` plotly axes keyword arguments e.g. 'type'
   * [pio.templates](https://plotly.com/python/templates/)
-  * pass any plotly keyword arguments e.g. 'font' and or 'legend' `update_layout_kwargs`
+  * `update_layout_kwargs` plotly layout keyword arguments e.g. 'font', 'legend' etc
+  * `update_traces_kwargs` plotly traces keyword arguments e.g. 'marker', 'selector' etc
 * auto-detect data files (xls, xlsx, csv only)
 * supported data files: xls, xlsx, csv, txt
 * filter data files (include and exclude) `folder_include_filter`, `folder_exclude_filter`, 
@@ -51,6 +52,7 @@ in this example
 * the x value is extracted from the file name via regular expression
 * each point on the scatter plot is the maximum value from a column called `Force(N)-data` where the header is located at the 4th row of a data file
 * the legend is inside the plot in the right top corner, by default the legend is outside the plot on the right side
+* markers are used and they are 10 pixels in diameter
 ```json
 {
     "title_text": "Force over temperature",
@@ -59,7 +61,7 @@ in this example
     "y_id": "Force(N)-data",
     "y_title": "Max Force (N)",
     "showlegend": true,
-    "update_layout_args": {
+    "update_layout_kwargs": {
         "legend": {"xanchor": "right", "yanchor": "top"},
         "font": {"size": 17}
     },
@@ -77,7 +79,10 @@ in this example
     },
     "post": "max",
     "pio.template": "plotly_white",
-    "trace_mode": "markers"
+    "trace_mode": "markers",
+    "update_traces_kwargs": {
+        "marker": {"size": 10}
+    }
 }
 ```
 

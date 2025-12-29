@@ -96,8 +96,9 @@ def single_plot(args_dict={}):
     y_title = args_dict.get('y_title', y_id)  # use y_id if no label is given
     trace_mode = args_dict.get('trace_mode', 'markers')
     marker_symbols = args_dict.get('marker_symbols')
+    update_traces_kwargs = args_dict.get('update_traces_kwargs', {})
     show_legend = args_dict.get('showlegend', True)
-    update_layout_kwargs = args_dict.get('update_layout_args', {})
+    update_layout_kwargs = args_dict.get('update_layout_kwargs', {})
     x_axes_kwargs = args_dict.get('x_axes_kwargs', {})
     y_axes_kwargs = args_dict.get('y_axes_kwargs', {})
     x_axes_visible = args_dict.get('xaxes_visible', True)
@@ -205,6 +206,7 @@ def single_plot(args_dict={}):
     for x_value in constant_lines_x:
         fig.add_vline(x=x_value)
 
+    fig.update_traces(**update_traces_kwargs)
     fig.update_layout(height=height, width=width, title_text=title)
     fig.update_layout(showlegend=show_legend)
     fig.update_layout(**update_layout_kwargs)
