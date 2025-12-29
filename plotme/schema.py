@@ -11,6 +11,8 @@ schema = {
             "update_layout_kwargs": {"type": "object"},
             "xaxes_visible": {"type": "boolean"},
             "yaxes_visible": {"type": "boolean"},
+            "x_axes_kwargs": {"type": "object"},
+            "y_axes_kwargs": {"type": "object"},
             "folder_include_filter": {"type": "string"},
             "folder_exclude_filter": {"type": "string"},
             "schema": {"type": "object", "properties": {
@@ -60,11 +62,10 @@ schema = {
                 "visible": {"type": "boolean"},
             }},
             "pio.template": {"type": "string"},
-            "trace_mode": {"type": "string", "enum": [
-                "markers",
-                "lines"
-            ]},
+            "trace_mode": {"type": "string",
+                           "pattern": "^(lines|markers|text)(\\+(lines|markers|text))*(\\+(lines|markers|text))?$"},
             "marker_symbols": {"type": "array", "items": {"type": "integer"}},
+            "update_traces_kwargs": {"type": "object"},
         }
 }
 
@@ -102,9 +103,10 @@ template = {
     },
     "error_y": {
         "type": "percent",
-        "value": "change to floating point or integer",
+        "value": "change to a number number",
         "visible": True},
     "pio.template": "plotly_white, see readme for more examples",
-    "trace_mode": "markers(default) or lines",
-    "marker_symbols": ["array of marker symbols numbers, must have one for each trace"]
+    "trace_mode": "'markers'(default), 'lines', 'markers+lines' etc",
+    "marker_symbols": ["array of marker symbols numbers, must have one for each trace"],
+    "update_traces_kwargs": "pass through any fig.update_traces key word arguments to plotly"
 }

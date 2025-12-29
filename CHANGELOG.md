@@ -5,10 +5,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [1.4.0] - 2025-12-29
+
+### Added
+- ability to pass plotly traces keyword arguments e.g. 'marker', 'selector' etc via `update_traces_kwargs`
+- top level schema validation for `x_axes_kwargs` and `y_axes_kwargs`
+- example of marker size to example json in readme
+
+### Changed
+- schema validation for trace_mode now allows combinations such as 'lines+markers'
+- readme to better indicate the keys of the pass through arguments
+
 ## [1.3.0] - 2025-09-25
 
 ### Added
-- ability to pass any plotly keyword arguments e.g. 'font' and or 'legend' via `update_layout_kwargs`
+- ability to pass plotly layout keyword arguments e.g. 'font, 'legend' etc via `update_layout_kwargs`
 
 ### Changed
 - useability improvement: space characters are stripped from x_id, y_id and also from the loaded dataframe column headers therefore leading and trailing spaces no longer create errors
